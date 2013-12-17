@@ -7,6 +7,7 @@ project (${PROJECT})
 include_directories (.)
 include_directories (./gauss)
 include_directories (./math)
+include_directories (./templates)
 include_directories (./2d/hpolarization)
 include_directories (./2d/curves)
 
@@ -21,6 +22,9 @@ set (HEADERS
 )
 set (SOURCES 
     ./main.cpp
+    ./2d/curves/curve.cpp
+    ./2d/curves/discretize_curve.cpp
+    ./2d/hpolarization/core.cpp
 
 )
 

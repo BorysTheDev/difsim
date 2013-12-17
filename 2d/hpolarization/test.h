@@ -8,7 +8,7 @@
 template<class Matrix>
 Matrix& discretize(Matrix& matr, int size)
 {
-  using namespace mf;
+  using namespace mth;
   int n = size + 1;
   typedef typename std::remove_const<
       typename std::remove_reference<decltype(matr[0][0])>::type>::type real;

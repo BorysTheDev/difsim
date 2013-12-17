@@ -5,11 +5,11 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-namespace mf
-{
+namespace mth {
 
 template<class T>
-inline T sqr(const T& base) {
+inline T sqr(const T& base)
+{
   return base * base;
 }
 

@@ -3,67 +3,70 @@
 #include "point.h"
 #include <cmath>
 #include "types.h"
+#include "prototype.h"
 
-//realODO it's must be spline or general function
-class Curve {
+namespace crv
+{
+
+class Curve : public Prototype<Curve> {
 public:
-	virtual types::real x(types::real t) const = 0;
-	virtual types::real y(types::real t) const = 0;
-	virtual types::real dx(types::real t) const = 0;
-	virtual types::real dy(types::real t) const = 0;
+	virtual tps::real x(tps::real t) const = 0;
+	virtual tps::real y(tps::real t) const = 0;
+	virtual tps::real dx(tps::real t) const = 0;
+	virtual tps::real dy(tps::real t) const = 0;
+	virtual tps::real d2x(tps::real t) const = 0;
+	virtual tps::real d2y(tps::real t) const = 0;
 
-	virtual types::real length() const = 0;
-
-	virtual Curve* clone() const = 0;
-
-	virtual ~Curve() = default;
+	virtual tps::real length() const = 0;
 };
 
 class Line: public Curve {
 public:
-	Line(const Point<types::real>& a, const Point<types::real>& b);
+	Line(const tps::RPoint& a, const tps::RPoint& b);
 
-	types::real x(types::real t) const override;
-	types::real y(types::real t) const override;
-	types::real dx(types::real t) const override {return cosPhi * len / 2;}
-	types::real dy(types::real t) const override {return sinPhi * len / 2;}
+	tps::real x(tps::real t) const override;
+	tps::real y(tps::real t) const override;
+	tps::real dx(tps::real t) const override {return cosPhi * len / 2;}
+	tps::real dy(tps::real t) const override {return sinPhi * len / 2;}
+	tps::real d2x(tps::real t) const override {return 0;};
+	tps::real d2y(tps::real t) const override {return 0;};
 
-	types::real length() const override {return len;}
+	tps::real length() const override {return len;}
 
 	Line* clone() const override;
 
 private:
-	types::RPoint p1;
-	types::RPoint p2;
-	types::real cosPhi;
-	types::real sinPhi;
-	types::real len;
+	tps::RPoint p1;
+	tps::RPoint p2;
+	tps::real cosPhi;
+	tps::real sinPhi;
+	tps::real len;
 };
 
-
+//TODO change derivative
 class Parabola: public Curve {
 public:
-	Parabola(const types::real& x1, const types::real& x2, const types::real& p);
+	Parabola(const tps::real& x1, const tps::real& x2, const tps::real& p);
 
-	types::real x(types::real t) const override;
-	types::real y(types::real t) const override;
-	types::real dx(types::real t) const override;
-	types::real dy(types::real t) const override;
+	tps::real x(tps::real t) const override;
+	tps::real y(tps::real t) const override;
+	tps::real dx(tps::real t) const override;
+	tps::real dy(tps::real t) const override;
+  tps::real d2x(tps::real t) const override;
+  tps::real d2y(tps::real t) const override;
 
-	types::real length() const override;
-
-
+	tps::real length() const override;
 
 	Parabola* clone() const override;
 
 private:
-	types::real x1;
-	types::real x2;
-	types::real p;
-	types::real lengthInt(types::real x) const;    //Int(sqrt(1+x^2)) which is used for parabola length calculation
+	tps::real x1;
+	tps::real x2;
+	tps::real p;
+	tps::real lengthInt(tps::real x) const;    //Int(sqrt(1+x^2)) which is used for parabola length calculation
 };
 
-
+}
 
 
 

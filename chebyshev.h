@@ -4,7 +4,7 @@
 #include <cmath>
 #include "simple_math.h"
 
-namespace mf {
+namespace mth {
 
 //Chebyshev of the first kind.
 template<class T>
