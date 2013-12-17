@@ -5,7 +5,7 @@
 #include <memory>
 #include "discretize_curve.h"
 #include "chebyshev.h"
-#include "core.h"
+#include "h_core.h"
 #include <iostream>
 #include "hankel.h"
 
