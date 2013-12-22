@@ -31,7 +31,8 @@ protected:
   int size_;
 };
 
-class DiscretizeCurve : public CurveForDiscretize{
+class DiscretizeCurve
+{
 public:
   typedef ParametricCurvePoint pcp;
 
@@ -40,6 +41,8 @@ public:
 	DiscretizeCurve(const Curve&, size_t size, PointGen func);
   template<class PointGen>
 	DiscretizeCurve(const CurveForDiscretize&, PointGen func);
+
+  size_t size() const { return points.size();}
 
 	pcp operator[](size_t i) const { return points[i]; }
 
@@ -51,7 +54,7 @@ private:
 
 template<class PointGen>
 DiscretizeCurve::DiscretizeCurve(const Curve& curve,
-    size_t size, PointGen func) : CurveForDiscretize(curve, size), points(size)
+    size_t size, PointGen func) : points(size)
 {
   for (size_t i = 0; i < size; i++) {
     points[i].t = func(size, i);

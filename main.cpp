@@ -4,11 +4,11 @@
 #include "gauss.h"
 #include "test.h"
 
-
 int main(int argc, char** argv)
 {
+  /*
   const int size = 100;
-  Matrix<std::complex<double>> matr(size);
+  mtrx::Matrix<std::complex<double>> matr(size);
   std::complex<double> v[size];
   for (int i = 0; i < size; ++i) {
     v[i] = mth::ucheb(size - 1, mth::uchebNodes<double>(size + 1, i + 1));
@@ -22,7 +22,7 @@ int main(int argc, char** argv)
   gaussScheme(matr, v, size);
   for (int i = 0; i < size; ++i) {
    // std::cout << v[i] << " ";
-  }
+  }*/
 
 
 

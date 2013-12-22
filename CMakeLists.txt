@@ -19,12 +19,18 @@ add_definitions (-Wall -pedantic -std=gnu++11 -O2)
 endif()
 
 set (HEADERS 
+    ./types.h
+    ./matrix.h
+    ./counter.h
+
     ./math/hankel.h
     ./math/simple_math.h
     ./math/point.h
+    ./discretization.h
 )
 set (SOURCES 
     ./main.cpp
+    ./discretization.cpp
 
     ./2d/epolarization/e_core.cpp
 

@@ -19,7 +19,6 @@ Matrix& discretize(std::vector<crv::CurveForDiscretize> cs, Matrix& matr,
   for (auto& c : cs)
     curves.emplace_back(c, mth::uchebNodes<double>);
 
-  int i = 0;
   //int i = leftBorderOf(ci1);
   //int j = leftBorderOf(ci2);
   const crv::DiscretizeCurve& c1 = curves[0];

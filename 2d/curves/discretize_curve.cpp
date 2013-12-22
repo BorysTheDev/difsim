@@ -25,10 +25,9 @@ CurveForDiscretize& CurveForDiscretize::operator=(CurveForDiscretize& cfd)
   return cfd;
 }
 
-DiscretizeCurve::DiscretizeCurve(DiscretizeCurve&& dc) : CurveForDiscretize(dc)
+DiscretizeCurve::DiscretizeCurve(DiscretizeCurve&& dc)
 {
   points.swap(dc.points);
-
 }
 
 }

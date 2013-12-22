@@ -1,7 +1,10 @@
 #ifndef MATRIX_H_
 #define MATRIX_H_
 
-#include <memory>
+
+
+namespace mtrx
+{
 template <class T>
 class Matrix{
 public:
@@ -74,4 +77,5 @@ Matrix<T>& Matrix<T>::operator=(const Matrix &m){
 	return *this;
 }
 
+}
 #endif /* MATRIX_H_ */

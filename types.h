@@ -2,6 +2,8 @@
 #define TYPES_H_
 #include <complex>
 #include "point.h"
+#include "matrix.h"
+#include <memory>
 
 namespace tps {
 
@@ -9,6 +11,8 @@ typedef double real;
 typedef std::complex<double> complex;
 typedef mth::Point<real> RPoint;
 
+typedef mtrx::Matrix<complex> CMatrix;
+typedef std::unique_ptr<mtrx::Matrix<complex>> CMatrixUPtr;
 }
 
 #endif /* TYPES_H_ */
