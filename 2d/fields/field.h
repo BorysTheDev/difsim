@@ -6,38 +6,47 @@
 
 namespace fld
 {
-class IncidentField : public Prototype<IncidentField> {
+class IncidentField : public Prototype<IncidentField>
+{
 public:
   typedef ProtoPtr<IncidentField> FieldPtr;
-	//constructor
-	IncidentField(tps::real waveNumber, tps::real alpha):
-			waveNumber_(waveNumber), alpha_(alpha) {}
 
-	//functions
-	virtual tps::complex operator()(tps::real x1, tps::real x2) const = 0;
+  IncidentField(tps::real waveNumber, tps::real alpha);
 
-	tps::real waveNumber()const {return waveNumber_;}
-	void setWaveNumber(tps::real wn) {waveNumber_ = wn;}
+  virtual tps::complex operator()(tps::real x1, tps::real x2) const = 0;
 
-	//destructor
-	virtual ~IncidentField() = default;
+  tps::real waveNumber() const {return waveNumber_;}
+  tps::real alpha()      const {return alpha_;}
+
+  void setWaveNumber(tps::real wn) {waveNumber_ = wn;}
+  void setAlpha(tps::real alpha)   {alpha_ = alpha;}
+
+  virtual ~IncidentField() = default;
 
 protected:
-	tps::real waveNumber_;
-	tps::real alpha_;
+  tps::real waveNumber_;
+  tps::real alpha_;
 };
 
-class EPolarizationField: public IncidentField {
+//TODO
+class FieldsPackage : public IncidentField
+{
+  FieldsPackage(tps::real wn, tps::real alpha)
+    : IncidentField(wn, alpha) {}
+
+private:
+  std::vector<FieldPtr> fields;
+};
+
+
+class EPolarizationField: public IncidentField
+{
 public:
-	//constructor
-	EPolarizationField(tps::real waveNumber, tps::real alpha) :
-			IncidentField(waveNumber, alpha) {}
+  EPolarizationField(tps::real wn, tps::real alpha);
 
-	//functions
-	tps::complex operator()(tps::real x1, tps::real x2)const override;
+  tps::complex operator()(tps::real x1, tps::real x2)const override;
 
-	ProtoPtr<IncidentField> clone() const override {
-		return new EPolarizationField(this->waveNumber_, this->alpha_);}
+  ProtoPtr<IncidentField> clone() const override;
 };
 
 }

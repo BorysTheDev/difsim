@@ -4,14 +4,16 @@
 #include "test.h"
 #include "discretization.h"
 #include "e_core.h"
+#include "field.h"
 
 
 int main(int argc, char** argv)
 {
   crv::Line line({1,1},{2,2});
+  fld::EPolarizationField field(1,0);
   std::vector<crv::DiscretizeCurve> curves;
   curves.emplace_back(line, 20, mth::tchebNodes<tps::real>);
-  MatrixDiscretization md(curves, 2);
+  Discretization md(curves, field.clone());
   mtrx::Matrix<tps::complex> matr(md.dimension());
   md.discretize(matr, matr.width(), epl::mdoCore);
   /*const int size = 100;
