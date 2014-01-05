@@ -17,6 +17,7 @@ struct ParametricCurvePoint: public tps::RPoint
 class CurveForDiscretize
 {
 public:
+  CurveForDiscretize(const Curve&);
   CurveForDiscretize(const Curve&, size_t size);
   CurveForDiscretize(const CurveForDiscretize&);
   CurveForDiscretize(CurveForDiscretize&&);
@@ -27,12 +28,11 @@ public:
   void setSize(size_t size)     { size_ = size; }
 
 protected:
-  std::unique_ptr<const Curve> curve_;
+  ProtoPtr<Curve> curve_;
   int size_;
 };
 
-class DiscretizeCurve
-{
+class DiscretizeCurve {
 public:
   typedef ParametricCurvePoint pcp;
 
@@ -42,8 +42,7 @@ public:
   template<class PointGen>
 	DiscretizeCurve(const CurveForDiscretize&, PointGen func);
 
-  size_t size() const { return points.size();}
-
+  size_t size()            const { return points.size(); }
 	pcp operator[](size_t i) const { return points[i]; }
 
 private:

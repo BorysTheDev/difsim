@@ -1,13 +1,20 @@
 #include <iostream>
 #include "matrix.h"
-#include "matrix_discretization.h"
 #include "gauss.h"
 #include "test.h"
+#include "discretization.h"
+#include "e_core.h"
+
 
 int main(int argc, char** argv)
 {
-  /*
-  const int size = 100;
+  crv::Line line({1,1},{2,2});
+  std::vector<crv::DiscretizeCurve> curves;
+  curves.emplace_back(line, 20, mth::tchebNodes<tps::real>);
+  MatrixDiscretization md(curves, 2);
+  mtrx::Matrix<tps::complex> matr(md.dimension());
+  md.discretize(matr, matr.width(), epl::mdoCore);
+  /*const int size = 100;
   mtrx::Matrix<std::complex<double>> matr(size);
   std::complex<double> v[size];
   for (int i = 0; i < size; ++i) {

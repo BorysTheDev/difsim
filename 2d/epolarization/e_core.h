@@ -1,23 +1,23 @@
-#ifndef CORE_H_
-#define CORE_H_
+#ifndef E_CORE_
+#define E_CORE_
 
 #include "discretize_curve.h"
 
 namespace epl {
 
-/*
- * wn - wave number
+/**
+ * @brief mdoCore
+ * @param p1 - first curve point
+ * @param p2 - second curve point
+ * @param sinhularity - it's true if curve1 == curve2
+ * @param size - second curve points number
+ * @param wn - wavenumber
+ * @return
  */
-tps::complex core(const tps::RPoint&,const tps::RPoint&, tps::real wn);
+tps::complex mdoCore(const crv::ParametricCurvePoint& p1,
+                     const crv::ParametricCurvePoint& p2,
+                     bool sinhularity, int size, tps::real wn);
 
-tps::complex smoothCore(const crv::ParametricCurvePoint& t,
-    const crv::ParametricCurvePoint& t1, tps::real wn);
-
-/* limit
- * wn - wave number
- * d - derivative
- */
-tps::complex lim(tps::RPoint d, tps::real wn);
 }
 
-#endif /* CORE_H_ */
+#endif /* E_CORE_ */

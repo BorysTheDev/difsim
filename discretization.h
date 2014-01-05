@@ -4,6 +4,7 @@
 #include "discretize_curve.h"
 #include "types.h"
 #include "counter.h"
+#include "iostream"
 
 class MatrixDiscretization {
   typedef std::vector<crv::DiscretizeCurve> DCList;
@@ -58,7 +59,8 @@ template<class Matrix, class Core>
 void MatrixDiscretization::BlockDiscretizator<Matrix, Core>::discretize() {
   for(curBlock = md.cntr++; curBlock[1] < (int)md.curves.size(); curBlock = md.cntr++)
   {
-    for (int i; i < md.curves[curBlock[0]].size(); i++)
+    //std::cout<<curBlock[0]<< " - " << curBlock[1] << std::endl;
+    for (int i = 0; i < md.curves[curBlock[0]].size(); i++)
       discretizeBlockLine(i);
   }
 }
@@ -66,13 +68,15 @@ void MatrixDiscretization::BlockDiscretizator<Matrix, Core>::discretize() {
 template<class Matrix, class Core>
 void MatrixDiscretization::BlockDiscretizator<Matrix, Core>::discretizeBlockLine(int i)
 {
-  Border bl = borders[curBlock[0]];
-  Border bc = borders[curBlock[1]];
-  crv::DiscretizeCurve& c1 = md.curves[curBlock[0]];
-  crv::DiscretizeCurve& c2 = md.curves[curBlock[1]];
+  Border& bl = md.borders[curBlock[0]];
+  Border& bc = md.borders[curBlock[1]];
+  const crv::DiscretizeCurve& c1 = md.curves[curBlock[0]];
+  const crv::DiscretizeCurve& c2 = md.curves[curBlock[1]];
   for (int j = 0; j < md.curves[curBlock[1]].size(); j++){
-    mtrx[bl.left + i][bc.left + j] = core(c1[i], c2[j], md.waveNumber, c2.size());
+    mtrx[bl.left + i][bc.left + j] = core(c1[i], c2[j],
+                                          &c1 == &c2, c2.size(), md.waveNumber);
   }
 }
+
 
 #endif /* DISCRETIZATION_H_ */

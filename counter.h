@@ -3,7 +3,7 @@
 
 #include <atomic>
 #include <array>
-
+#include <iostream>
 
 namespace utl
 {
@@ -48,9 +48,11 @@ typename Counter<dim>::array Counter<dim>::longToArray(long c)
         cs[i] = c % borders[i];
         c /= borders[i];
     }
+    cs[dim - 1] = c;
+    //std::cout<<c << " - " << cs[0] << "-" << cs[1] << " - " << borders[0] <<std::endl;
     return cs;
 }
-
+/*
 template<>
 Counter<2>::operator array() const{
     long c = counter;
@@ -62,6 +64,6 @@ typename Counter<2>::array Counter<2>::operator++(int){
     long c = counter++;
     return {c % borders[0], c / borders[0]};
 }
-
+*/
 }
 #endif // COUNTER_H

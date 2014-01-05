@@ -36,4 +36,4 @@ Debug/
 EPol.*
 Win32/
 
-CMakeLists.txt.user
+CMakeLists.txt.user*

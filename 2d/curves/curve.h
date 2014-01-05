@@ -28,12 +28,12 @@ public:
 	tps::real y(tps::real t) const override;
 	tps::real dx(tps::real t) const override {return cosPhi * len / 2;}
 	tps::real dy(tps::real t) const override {return sinPhi * len / 2;}
-	tps::real d2x(tps::real t) const override {return 0;};
-	tps::real d2y(tps::real t) const override {return 0;};
+  tps::real d2x(tps::real t) const override {return 0;}
+  tps::real d2y(tps::real t) const override {return 0;}
 
 	tps::real length() const override {return len;}
 
-	Line* clone() const override;
+	ProtoPtr<Curve> clone() const override;
 
 private:
 	tps::RPoint p1;
@@ -57,7 +57,7 @@ public:
 
 	tps::real length() const override;
 
-	Parabola* clone() const override;
+	ProtoPtr<Curve> clone() const override;
 
 private:
 	tps::real x1;
