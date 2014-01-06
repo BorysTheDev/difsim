@@ -83,8 +83,8 @@ tps::complex mdoCore(const pcp& p1, const pcp& p2, bool sinhularity,
                      int size, tps::real wn)
 {
   if (sinhularity){
-    return (M_PI / size) * smoothCore(p1 ,p2, wn)
-        - complex(0,2) * Ln(p1.t, p2.t, size);
+    return (M_PI / size) * (smoothCore(p1 ,p2, wn)
+        - complex(0,2) * Ln(p1.t, p2.t, size) / M_PI);
   } else {
     return (M_PI / size) * core(p1 ,p2, wn);
   }

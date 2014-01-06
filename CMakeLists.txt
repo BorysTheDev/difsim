@@ -24,8 +24,6 @@ set (HEADERS
     ./matrix.h
     ./counter.h
 
-
-
     ./math/hankel.h
     ./math/chebyshev.h
     ./math/simple_math.h
@@ -38,6 +36,8 @@ set (SOURCES
     ./discretization.cpp
 
     ./2d/epolarization/e_core.cpp
+    ./2d/epolarization/field_solver.cpp
+
 
     ./2d/curves/curve.cpp
     ./2d/curves/discretize_curve.cpp

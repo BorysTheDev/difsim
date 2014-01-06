@@ -15,10 +15,10 @@ public:
   size_t dimension() {return size;}
 
   template<class Matrix, class Core>
-  Matrix& discretize(Matrix&, int size, Core&);
+  Matrix& discretize(Matrix&, int dim, Core&);
 
   template<class Vector>
-  Vector& discretize(Vector&, int size);
+  Vector& discretize(Vector&, int dim);
 
 private:
   //-----parameters--------------------------
@@ -54,20 +54,22 @@ private:
 template<class Matrix, class Core>
 Matrix& Discretization::discretize(Matrix& matr, int dim, Core& core)
 {
-  if (dim != size) throw std::logic_error("dimensions are different!");
+  if (dim < size) throw std::logic_error("dimensions are different!");
   BlockDiscretizator<Matrix, Core> discretizator(*this, matr, core);
   discretizator.discretize();
   return matr;
 }
 
 template<class Vector>
-Vector& Discretization::discretize(Vector& f, int size)
+Vector& Discretization::discretize(Vector& f, int dim)
 {
+  if (dim < size) throw std::logic_error("dimensions are different!");
   int ii = 0;
   for (size_t i = 0; i < curves.size(); i++) {
     for (size_t j = 0; j < curves[i].size(); j++, ii++)
       f[ii] = -(*field)(curves[i][j].x, curves[i][j].y);
   }
+  return f;
 }
 
 template<class Matrix, class Core>
