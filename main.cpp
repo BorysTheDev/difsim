@@ -58,6 +58,7 @@ int main(int argc, char** argv)
     }
     fout.close();
 
+    std::cout << f.field({2,2}) << std::endl;
   /*const int size = 100;
   mtrx::Matrix<std::complex<double>> matr(size);
   std::complex<double> v[size];

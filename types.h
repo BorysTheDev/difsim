@@ -4,9 +4,11 @@
 #include "point.h"
 #include "matrix.h"
 #include <memory>
+#include "inttypes.h"
 
 namespace tps {
 
+typedef uint_fast32_t fint;
 typedef double real;
 typedef std::complex<double> complex;
 typedef mth::Point<real> RPoint;
